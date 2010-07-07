@@ -1,0 +1,145 @@
+<html>
+<head>
+<title>Cuco</title>
+
+<link type="text/css" href="css/ui-lightness/jquery-ui-1.8.2.custom.css" rel="stylesheet" />
+<link rel="stylesheet" href="css/blueprint/screen.css" type="text/css" media="screen, projection">
+<link rel="stylesheet" href="css/blueprint/print.css" type="text/css" media="print">
+<link type="text/css" href="css/style.css" rel="stylesheet" />
+<script type="text/javascript" src="js/jquery-1.4.2.min.js"></script>
+<script type="text/javascript" src="js/jquery-ui-1.8.2.custom.min.js"></script>
+<script type="text/javascript">
+//<!--
+function ProgressBar(pomodoro, pomodoro_size){
+	var instance = this;
+	instance.pomodoro=pomodoro;
+	instance.pomo_size=pomodoro_size * 60 * 1000; // em milisec
+	//instance.um_por_cento_do_pomodoro_size = instance.pomo_size * 600; //(pomodoro_size * 60 * 1000) / 100
+	instance.um_por_cento_do_pomodoro_size = instance.pomo_size / 100;
+	instance.time_elapsed = 0;
+	var t;
+	
+	$("#progressbar").progressbar({value: instance.time_elapsed});
+	
+	function progressIncrement(){
+	
+		$("#progressbar").progressbar("option", "value", instance.time_elapsed);
+		$("#timer").html((instance.pomo_size - (instance.time_elapsed * instance.um_por_cento_do_pomodoro_size))/60000)
+		instance.time_elapsed += 1;
+		
+		if (instance.time_elapsed < 101) { // ainda não completou o pomodoro
+			t = setTimeout("pomo.progressBar.progressIncrement()", instance.um_por_cento_do_pomodoro_size); //
+		}
+		else { // pomodoro finished!
+		//debugger
+			instance.pomodoro.finished();
+		}
+	}
+	function start(){
+		progressIncrement();
+	}
+	function stop(){
+		clearTimeout(t);
+	}
+	
+	instance.start=start;
+	instance.stop=stop;
+	instance.progressIncrement = progressIncrement;
+}
+
+function Pomodoro() { // estados possíveis: // "parado", "trabalhando", "fim_trabalho", "intervalo", "fim_intervalo", "cucos_gone_mad"
+	var instance = this;
+	instance.progressBar = null;
+	instance.status = "parado";
+	instance.pomodoro_duration = 0.2; //minutos
+	instance.break_duration = 0.1; //minutos
+	
+	function cuco_click() {
+		if(instance.status == "parado") { // tava parado, começou a trampar
+			$("#cuco_balloon").html("<p>Working..</p>");
+			start_work();
+		}
+		else if(instance.status == "trabalhando") { // clicou qdo estava no meio do pomodoro
+			stop_pomodoro();
+		}
+		else if(instance.status == "fim_trabalho") { // clicou para começar o break
+			$("#cuco_balloon").html("<p>Breaking(?)..</p>");
+			start_break();
+		}
+		else if(instance.status == "intervalo") { // clicou qdo estava no meio do pomodoro
+			stop_pomodoro();
+		}
+		else if(instance.status == "fim_intervalo") { // clicou para começar a trabalhar
+			$("#cuco_balloon").html("<p>Working..</p>");
+			start_work();
+		}
+		else {
+			$("#cuco_balloon").html("<p>I don't know this option!</p>");
+			instance.status = "cucos_gone_mad!";
+		}
+	}
+	function finished() {
+		if(instance.status == "trabalhando") { 
+			$("#cuco_balloon").html("<p>You worked enough. Take a break!</p>");
+			alert("Take a Break!");
+			instance.status = "fim_trabalho";
+		}
+		else if(instance.status == "intervalo") {
+			$("#cuco_balloon").html("<p>Idle time is over. Let's get back to work!</p>");
+			alert("Back to work!")
+			instance.status = "fim_intervalo";
+		}
+		else {
+			$("#cuco_balloon").html("<p>Something's gone very wrong! How progress finished while stopped?? o_o</p>");
+			instance.status = "cucos_gone_mad!";
+		}
+	}
+	function stop_pomodoro() {
+		instance.progressBar.stop();
+		$("#cuco_balloon").html("<p>Cuco is now asleep..</p>");
+		instance.status = "parado";
+	}
+	function start_work() {
+		instance.progressBar = new ProgressBar(instance, instance.pomodoro_duration);
+		instance.progressBar.start();
+		instance.status = "trabalhando";
+	}
+	function start_break() {
+		instance.progressBar = new ProgressBar(instance, instance.break_duration);
+		instance.progressBar.start();
+		instance.status = "intervalo";
+	}
+	
+	instance.cuco_click=cuco_click;
+	instance.stop_pomodoro=stop_pomodoro;
+	instance.start_work=start_work;
+	instance.start_break=start_break;
+	instance.finished = finished 
+}
+
+var pomo = null;
+
+$(document).ready(function (){
+	pomo = new Pomodoro();
+})
+//-->
+</script>
+
+</head>
+<body>
+<div class="container">
+<fieldset>
+<h1>Task 101</h1>
+<hr>
+<div class="cuco_button span-3"><input type="button" id="cuco_button" onclick="pomo.cuco_click()" /></div>
+<div id="cuco_balloon"class="cuco_balloon span-4 last"></div>
+<div class="stop_button"><input type="button" id="stop_button" onclick="pomo.stop_pomodoro()" /> </div> <!--onclick="cuco_stop()"-->
+<hr>
+<!-- Progressbar -->
+<div id="progressbar" class="span-7 last"></div>
+<div id="timer"></div>
+
+</fieldset>
+</div>
+</body>
+</html>

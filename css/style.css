@@ -1,0 +1,4 @@
+.container { width:300px; }
+
+#cuco_button { background-image: url(../images/cuco_button.jpg); background-position:center; background-repeat: no-repeat; height:105px; width:105px; }
+#stop_button { background-image: url(../images/stop_button.png); background-position:center; background-repeat: no-repeat; height:30px; width:30px; }
