@@ -43,7 +43,7 @@ function require_projects(){
 	})
 }
 
-// Data is supposed to be an array of project hashes | ex: data[0].project.name
+// Data is supposed to be an array [ {name :'', :id:0, tasks:[id:0, :name:'', description:''] }]
 function require_projects_suc(data){
 	if(data == null) show_error() // maybe not an error.
 	else alert(data.length+" records found") // show the projects
@@ -93,7 +93,7 @@ function save_pomodoro_suc(data){
 	alert("Pomodoro Saved Succesfuly")
 }
 
-function save_pomodoro_err(data){
+function save_pomodoro_err(data, textStatus, errorThrown){
 	show_error(data.status, data.responseText)
 }
 

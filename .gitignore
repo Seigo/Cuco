@@ -1,6 +1,9 @@
 *~
 tmp/*
 *.log
+*.sqlite3
+
 db/schema.rb
 .loadpath
 .project
+

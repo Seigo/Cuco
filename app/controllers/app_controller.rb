@@ -18,11 +18,17 @@ class AppController < ApplicationController
   
   def projects
     @projects = Project.all
-    asdsads
+    #@projects.each { |p| p.task_cache = p.tasks }
+    
+    #t = @projects.map { |p| p.tasks }
+    #@tasks = {}
+    #t.flatten.each{ |t| ( @tasks[t.project_id].nil? ) ? @tasks[t.project_id] = [t] : @tasks[t.project_id].push(t) }
     
     respond_to do |format|
       format.html { redirect_to :action => 'index' }
-      format.js { render( :json => @projects.to_json) }
+      format.js { render( :json => @projects.to_json(:only =>[:id, :name ], 
+                                      :include => { :tasks => { :only => [:id, :description, :name] } })
+ ) }
     end
   end
   
@@ -37,7 +43,7 @@ class AppController < ApplicationController
     _|  _|  _|    _|    _|    _|        _|      _|        
       _|  _|      _|    _|  _|_|_|      _|      _|_|_|_|  
 
-=end  
+=end
   
   def save_pomodoro
     
@@ -61,7 +67,7 @@ class AppController < ApplicationController
     if p.save
       respond_to do |format|
         format.html { redirect_to :action => 'index' }
-        format.js {   render( :json => "OK" ) }
+        format.js {   render( :json => ["OK"] ) }
       end
     else
       #p.errors.full_messages # ex: ["Task can't be blank", "User can't be blank", "Init time can't be blank", "End time can't be blank", "Percentage can't be blank"]
