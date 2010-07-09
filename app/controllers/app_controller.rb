@@ -26,6 +26,9 @@ class AppController < ApplicationController
     end
   end
   
+  def cuco_menu
+    
+  end
   
 =begin
  _|            _| _|_|_|    _|_|_|  _|_|_|_|_|  _|_|_|_|  
