@@ -1,0 +1,24 @@
+<% title "Pomodoros" %>
+
+<table>
+  <tr>
+    <th>User</th>
+    <th>Task</th>
+    <th>Init Time</th>
+    <th>End Time</th>
+    <th>Comment</th>
+  </tr>
+  <% for pomodoro in @pomodoros %>
+    <tr>
+      <td><%=h pomodoro.user_id %></td>
+      <td><%=h pomodoro.task_id %></td>
+      <td><%=h pomodoro.init_time %></td>
+      <td><%=h pomodoro.end_time %></td>
+      <td><%=h pomodoro.comment %></td>
+      <td><%= link_to "Show", pomodoro %></td>
+      <td><%= link_to "Edit", edit_pomodoro_path(pomodoro) %></td>
+      <td><%= link_to "Destroy", pomodoro, :confirm => 'Are you sure?', :method => :delete %></td>
+    </tr>
+  <% end %>
+</table>
+<p><%= link_to "New Pomodoro", new_pomodoro_path %></p>

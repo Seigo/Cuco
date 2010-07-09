@@ -1,0 +1,33 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+       "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+  <title> <%= controller.controller_name.capitalize %> :: Cuco - A pomodoro time tracker</title>
+  <%= stylesheet_link_tag 'scaffold' %>
+</head>
+<body>
+
+<div id="masternav"> 
+	<div class="item"> Projects </div>
+	<div class="item"> Tasks </div>
+	<div class="item"> Users </div>
+</div>
+
+<script type="text/javascript">
+	var itens = document.getElementById("masternav").children
+	for (var i=0; i<itens.length; i++) {
+		var content = itens[i].innerHTML.replace(" ", "")
+		itens[i].innerHTML = "<a href='/" + content.toLowerCase() + "'> "+content+" </a> "
+	};
+	var a = ""
+	
+</script>
+<%#= controller.public_methods.sort.join('<br>') %>
+<p style="color: green"><%= flash[:notice] %></p>
+
+<%= yield %>
+
+</body>
+</html>

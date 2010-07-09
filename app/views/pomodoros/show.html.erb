@@ -1,0 +1,28 @@
+<% title "Pomodoro" %>
+
+<p>
+  <strong>User:</strong>
+  <%=h @pomodoro.user_id %>
+</p>
+<p>
+  <strong>Task:</strong>
+  <%=h @pomodoro.task_id %>
+</p>
+<p>
+  <strong>Init Time:</strong>
+  <%=h @pomodoro.init_time %>
+</p>
+<p>
+  <strong>End Time:</strong>
+  <%=h @pomodoro.end_time %>
+</p>
+<p>
+  <strong>Comment:</strong>
+  <%=h @pomodoro.comment %>
+</p>
+
+<p>
+  <%= link_to "Edit", edit_pomodoro_path(@pomodoro) %> |
+  <%= link_to "Destroy", @pomodoro, :confirm => 'Are you sure?', :method => :delete %> |
+  <%= link_to "View All", pomodoros_path %>
+</p>

@@ -1,0 +1,19 @@
+<h2> Playground . . . </h2>
+<!--
+script src="http://www.google.com/jsapi"></script>
+script>google.load("swfobject", "2.2");</script>
+-->
+
+<audio id="cuco_sound">
+	<source src="/audio/soft_cuco.ogg" type="audio/ogg" />
+	<source src="/audio/soft_cuco.mp3" type="audio/mp3" />
+</audio>
+
+<script type="text/javascript">
+	document.getElementById('cuco_sound').volume = 1
+</script>
+<div id="player">
+	
+  <button onClick="document.getElementById('cuco_sound').play()">Play</button>
+  <button onClick="document.getElementById('cuco_sound').pause()" onEnded="this.currentTime=0.0">Pause</button>
+</div>

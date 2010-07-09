@@ -1,0 +1,6 @@
+*~
+tmp/*
+*.log
+db/schema.rb
+.loadpath
+.project
