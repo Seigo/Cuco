@@ -1,4 +1,7 @@
 .container { width:300px; }
 
-#cuco_button { background-image: url(../images/cuco_button.jpg); background-position:center; background-repeat: no-repeat; height:105px; width:105px; }
-#stop_button { background-image: url(../images/stop_button.png); background-position:center; background-repeat: no-repeat; height:30px; width:30px; }
+#cuco { background-image: url(../images/cuco.png); background-position:center; background-repeat: no-repeat; height:55px; width:55px; }
+.stop_button { background-image: url(../images/stop_button.png); background-position:center; background-repeat: no-repeat; height:30px; width:30px; }
+.pause_button { background-image: url(../images/pause_button.png); background-position:center; background-repeat: no-repeat; height:30px; width:30px; }
+.play_button { background-image: url(../images/play_button.png); background-position:center; background-repeat: no-repeat; height:30px; width:30px; }
+#progressbar { height:2px; }

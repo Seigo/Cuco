@@ -2,12 +2,19 @@
 <head>
 <title>Cuco</title>
 
-<link type="text/css" href="css/ui-lightness/jquery-ui-1.8.2.custom.css" rel="stylesheet" />
+<!--<link type="text/css" href="css/ui-lightness/jquery-ui-1.8.2.custom.css" rel="stylesheet" />
 <link rel="stylesheet" href="css/blueprint/screen.css" type="text/css" media="screen, projection">
 <link rel="stylesheet" href="css/blueprint/print.css" type="text/css" media="print">
 <link type="text/css" href="css/style.css" rel="stylesheet" />
 <script type="text/javascript" src="js/jquery-1.4.2.min.js"></script>
-<script type="text/javascript" src="js/jquery-ui-1.8.2.custom.min.js"></script>
+<script type="text/javascript" src="js/jquery-ui-1.8.2.custom.min.js"></script>-->
+<link type="text/css" href="public/stylesheets/ui-lightness/jquery-ui-1.8.2.custom.css" rel="stylesheet" />
+<link rel="stylesheet" href="public/stylesheets/blueprint/screen.css" type="text/css" media="screen, projection">
+<link rel="stylesheet" href="public/stylesheets/blueprint/print.css" type="text/css" media="print">
+<link type="text/css" href="public/stylesheets/style.css" rel="stylesheet" />
+<script type="text/javascript" src="public/javascripts/jquery-1.4.2.min.js"></script>
+<script type="text/javascript" src="public/javascripts/jquery-ui-1.8.2.custom.min.js"></script>
+
 <script type="text/javascript">
 //<!--
 function ProgressBar(pomodoro, pomodoro_size){
@@ -129,11 +136,13 @@ $(document).ready(function (){
 <body>
 <div class="container">
 <fieldset>
-<h1>Task 101</h1>
+<h1>Task 101</h1> <div id="cuco"></div>
 <hr>
-<div class="cuco_button span-3"><input type="button" id="cuco_button" onclick="pomo.cuco_click()" /></div>
-<div id="cuco_balloon"class="cuco_balloon span-4 last"></div>
-<div class="stop_button"><input type="button" id="stop_button" onclick="pomo.stop_pomodoro()" /> </div> <!--onclick="cuco_stop()"-->
+<!--div class="cuco_button span-3"><input type="button" id="cuco_button" onclick="pomo.cuco_click()" /></div>
+<div id="cuco_balloon"class="cuco_balloon span-4 last"></div-->
+<div class="stop_button"><!--input type="button" id="stop_button" onclick="pomo.stop_pomodoro()" /--> </div> <!--onclick="cuco_stop()"-->
+<div class="pause_button"></div>
+<div class="play_button"></div>
 <hr>
 <!-- Progressbar -->
 <div id="progressbar" class="span-7 last"></div>
