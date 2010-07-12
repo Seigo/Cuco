@@ -32,8 +32,8 @@ class AppController < ApplicationController
     end
   end
   
-  def cuco_menu
-    
+  def cuco
+    render :layout => 'cuco_layout' 
   end
   
 =begin
