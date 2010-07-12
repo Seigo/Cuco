@@ -12,14 +12,53 @@ script>google.load("swfobject", "2.2");</script>
 <script type="text/javascript">
 	document.getElementById('cuco_sound').volume = 1
 </script>
-<div id="player">
-	
-  <button onClick="document.getElementById('cuco_sound').play()">Play</button>
-  <button onClick="document.getElementById('cuco_sound').pause()" onEnded="this.currentTime=0.0">Pause</button>
-  
-  <div id="teste-ajax"> Ajax:
-		<button onClick="require_projects()">Projects</button>
-		<button onClick="save_pomodoro()">Save Pomodoro</button>
-  </div>
-	
+<div id="player" class="horinaja">
+	<ul>
+		<li>
+			HTML5 soundTAG: <br/>
+		  <button onClick="document.getElementById('cuco_sound').play()">Play</button>
+		  <button onClick="document.getElementById('cuco_sound').pause()" onEnded="this.currentTime=0.0">Pause</button>
+	  </li>
+		<li id="teste-ajax">
+	  	Ajax: <br/>
+			<button onClick="require_projects()">Projects</button>
+			<button onClick="save_pomodoro()">Save Pomodoro</button>
+	  </li>
+		<li> @nada1 </li>
+		<li> @nada2 </li>
+		<li> @nada3 </li>
+	</ul>
 </div>
+<br/>
+-----<br/>
+<br/>
+
+<style type="text/css">
+	dl.project{
+		font-size: 25px;
+		color: #ff304b;
+	}
+	.project > dt{
+		font-size: 15px;
+		color: #aa4553;
+	}
+	.project > dd{
+		font-size: 10px;
+		color: #790e1c;
+	}
+</style>
+
+<div id="project-list">
+<DL class="project"> Cuco
+	<DT >Tarefa1</DT>
+	<DD >The new version of this product costs significantly less than the
+	previous one!</dd>
+	<DT>Easier to use</dt>
+	<DD>We've changed the product so that it's much easier to use!</dd>
+	<DT>Safe for kids</dt>
+	<DD>You can leave your kids alone in a room with this product and
+	they won't get hurt (not a guarantee).</dd>
+</DL>
+</div>
+
+<%= javascript_tag "j('#player').Horinaja( {capture:'player',delai:0.3,duree:0,pagination:true} );"%> 
