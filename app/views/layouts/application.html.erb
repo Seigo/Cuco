@@ -4,8 +4,11 @@
   <head>
     <!-- <title><%= h(yield(:title) || "Untitled") %></title> -->
 	<title> <%= controller.controller_name.capitalize %> :: Cuco - A pomodoro time tracker</title>
-    <%= stylesheet_link_tag 'application' %>
-	<%= javascript_include_tag 'jquery-1.4.2.min.js' %>
+	
+  <%= stylesheet_link_tag 'application', 'horinaja.css' %>
+	
+	
+	<%= javascript_include_tag 'jquery-1.4.2.min.js', 'jquery.mousewheel.min.js', 'class.horinaja.jquery.js' %>
 	<%= javascript_include_tag 'comunication.js' %>
 	<script type="text/javascript">
 		// jQuery.noConflict();

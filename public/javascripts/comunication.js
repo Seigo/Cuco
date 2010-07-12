@@ -43,7 +43,11 @@ function require_projects(){
 	})
 }
 
-
+/*// Data is supposed to be an array [ {name :'projectX', :id:0, tasks:[id:0, :name:'taskX', description:''] }]
+function require_projects_suc(data){
+	if(data == null) show_error() // maybe not an error.
+	else alert(data.length+" records found") // show the projects
+}*/
 
 function require_projects_err(data){
 	// data.status // 500 quando é erro do server
