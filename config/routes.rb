@@ -1,4 +1,6 @@
 ActionController::Routing::Routes.draw do |map|
+  map.resources :todo_days
+
   map.resources :pomodoros
 
 

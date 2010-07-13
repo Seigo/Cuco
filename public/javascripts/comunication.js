@@ -57,6 +57,26 @@ function require_projects_err(data){
 
 
 
+function require_todo_today(){
+	j.ajax({
+	  url: '/app/load_todo_today',
+	  dataType: 'json',
+	  cache : false,
+	  success: require_todo_today_suc,
+	  error: require_todo_today_err,
+	  data: { date : (new Date).to_ruby() },
+	})
+}
+
+function require_todo_today_suc(data){
+	//alert("TODO list Carregada com sucesso!")
+	debugger;
+}
+
+function require_todo_today_err(data, textStatus, errorThrown){
+	show_error(data.status, data.responseText)
+}
+
 /*
  _|            _| _|_|_|    _|_|_|  _|_|_|_|_|  _|_|_|_|  
   _|          _|  _|    _|    _|        _|      _|        
@@ -97,3 +117,31 @@ function save_pomodoro_err(data, textStatus, errorThrown){
 	show_error(data.status, data.responseText)
 }
 
+
+
+
+
+// The param expected is a list of the tasks ids, the date should be the one of when started the cicle 
+function save_todo(tasks_id){
+	today = new Date
+	
+	j.ajax({
+		url: '/app/save_todo_today',
+		dataType: 'json',
+		cache : false,
+		success: save_todo_suc,
+		error:   save_todo_err,
+		data: {
+			date : today.to_ruby(),
+			tasks_id : tasks_id.join(',')
+		}
+	})
+}
+
+function save_todo_suc(data){
+	alert("TODO LIST FOI SALVA")
+}
+
+function save_todo_err(data, textStatus, errorThrown){
+	show_error(data.status, data.responseText)
+}

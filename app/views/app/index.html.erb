@@ -14,15 +14,17 @@ script>google.load("swfobject", "2.2");</script>
 </script>
 <div id="player" class="horinaja">
 	<ul>
-		<li>
-			HTML5 soundTAG: <br/>
-		  <button onClick="document.getElementById('cuco_sound').play()">Play</button>
-		  <button onClick="document.getElementById('cuco_sound').pause()" onEnded="this.currentTime=0.0">Pause</button>
-	  </li>
 		<li id="teste-ajax">
 	  	Ajax: <br/>
 			<button onClick="require_projects()">Projects</button>
 			<button onClick="save_pomodoro()">Save Pomodoro</button>
+			<button onClick="save_todo([6])">Save Todo</button>
+			<button onClick="require_todo_today()"> Require Todo</button>
+	  </li>
+		<li>
+			HTML5 soundTAG: <br/>
+		  <button onClick="document.getElementById('cuco_sound').play()">Play</button>
+		  <button onClick="document.getElementById('cuco_sound').pause()" onEnded="this.currentTime=0.0">Pause</button>
 	  </li>
 		<li> @nada1 </li>
 		<li> @nada2 </li>

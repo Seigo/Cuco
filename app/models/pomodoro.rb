@@ -1,5 +1,5 @@
 class Pomodoro < ActiveRecord::Base
-  attr_accessible :user_id, :task_id, :init_time, :end_time, :comment, :percentage
+  attr_accessible :user_id, :task_id, :init_time, :end_time, :comment, :i_interruption, :e_interruption
   
   belongs_to :user
   belongs_to :task

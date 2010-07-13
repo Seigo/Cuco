@@ -36,6 +36,15 @@ class AppController < ApplicationController
     render :layout => 'cuco_layout' 
   end
   
+  def load_todo_today
+    todo = TodoDay.last( :conditions => {:date => Date.parse( params[:date] ) })
+    
+    respond_to do |format|
+      format.html { redirect_to :action => 'index' }
+      format.js {   render( :json => todo.to_json) }
+    end
+  end
+  
 =begin
  _|            _| _|_|_|    _|_|_|  _|_|_|_|_|  _|_|_|_|  
   _|          _|  _|    _|    _|        _|      _|        
@@ -78,5 +87,44 @@ class AppController < ApplicationController
     end
     
   end
+  
+  def save_todo_today
+    unless ( params[:tasks_id] && params[:date])
+      raise "params missing" # if this happens means the JS failed to pass something, our error all the way. Or if war some lammer, just ignore alike. Ops.. did I just said 'alike'? -Nasty ;D
+    end
+    
+    #Verify if all tasks are existent
+    tasks = ( Task.find( params[:tasks_id].split(','))  rescue false)
+    
+    unless tasks
+      raise "The tasks ids passed fail to exist"
+    else
+      # now verify if it is not a hack and the user really has all the tasks!
+      my_id = current_user.id
+      raise( "Does not belong to you!") if tasks.reject { |t| t.user_id  == my_id }.size > 0 
+    end
+    
+    p = TodoDay.new({
+                  :user_id    => current_user.id,
+                  :task_list => params[:tasks_id],
+                  :date =>  params[:date]
+    })
+    
+    if p.save
+      respond_to do |format|
+        format.html { redirect_to :action => 'index' }
+        format.js {   render( :json => ["OK"] ) }
+      end
+    else
+      # cant imagine now how anything would end here :P
+      respond_to do |format|
+        format.html { redirect_to :action => 'index' }
+        format.js {   render( :json => p.errors.full_messages.to_json, :status => 400 ) }
+      end
+    end
+    
+  end
+  
+  
   
 end

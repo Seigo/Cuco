@@ -1,0 +1,20 @@
+<% title "Todo Day" %>
+
+<p>
+  <strong>Date:</strong>
+  <%=h @todo_day.date %>
+</p>
+<p>
+  <strong>User:</strong>
+  <%=h @todo_day.user_id %>
+</p>
+<p>
+  <strong>Task List:</strong>
+  <%=h @todo_day.task_list %>
+</p>
+
+<p>
+  <%= link_to "Edit", edit_todo_day_path(@todo_day) %> |
+  <%= link_to "Destroy", @todo_day, :confirm => 'Are you sure?', :method => :delete %> |
+  <%= link_to "View All", todo_days_path %>
+</p>
