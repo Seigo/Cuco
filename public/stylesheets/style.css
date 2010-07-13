@@ -1,7 +1,17 @@
-.container { width:300px; }
+body { background-color:#586362; }
+.container { width:800px; padding:5px 5px 5px 75px; background-image: url(../images/notebook-line.jpg); background-position:left; background-repeat:repeat-y; }
 
-.project {}
+.project { color:#000099 }
+.task { color:#006600 }
 .task:hover { cursor:crosshair; }
 
 #cuco_button { background-image: url(../images/cuco_button.jpg); background-position:center; background-repeat: no-repeat; height:105px; width:105px; }
-#stop_button { background-image: url(../images/stop_button.png); background-position:center; background-repeat: no-repeat; height:30px; width:30px; }
+/*#stop_button { background-image: url(../images/stop_button.png); background-position:center; background-repeat: no-repeat; height:30px; width:30px; }*/
+#progressbar { width:300px; height:2px; }
+
+#to_do_list { margin:20px 0 0 5px; }
+#to_do_list table { border:#999999; border-style:solid; border-width:thin; border-top-width:thick; }
+#to_do_list table tr td { border-right:#999999; border-right-style:solid; border-right-width:thin;
+                          border-bottom:#999999;border-bottom-style:solid;border-bottom-width:thin; }
+
+.clear { clear:both; }
