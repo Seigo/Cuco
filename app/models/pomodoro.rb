@@ -9,20 +9,20 @@ class Pomodoro < ActiveRecord::Base
   
   #before_save :cap_percentage  def cap_percentage    self.percentage = 100 if self.percentage > 100.0    self.percentage = 0 if self.percentage < 0  end
   before_save :cap_interruptions
-  after_save :update_task_overall
+  after_create :update_task_overall
   
   def cap_interruptions
     self.e_interruption = 100 if self.e_interruption > 100.0 
     self.i_interruption = 100 if self.i_interruption > 100.0
     
     self.e_interruption = 0 if self.e_interruption < 0.0 
-    self.i_interruption = 0 if self.i_interruption < 0.0 
+    self.i_interruption = 0 if self.i_interruption < 0.0
   end
   
   def update_task_overall
-    task = self.task
-    task.overall ||= ""
-    task.overall << 'X'+ "'"*self.i_interruption + "-"*self.e_interruption
+    self.task.overall ||= ""
+    self.task.overall << 'X' + "'"*self.i_interruption + "-"*self.e_interruption
+    self.task.save!
   end
   
   def check_dates
