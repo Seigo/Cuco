@@ -4,10 +4,11 @@
   <head>
     <!-- <title><%= h(yield(:title) || "Untitled") %></title> -->
   <title> <%= controller.controller_name.capitalize %> :: Cuco - A pomodoro time tracker</title>
+  <%= stylesheet_link_tag 'ui-lightness/jquery-ui-1.8.2.custom.css' %>
 <link rel="stylesheet" href="/stylesheets/blueprint/screen.css" type="text/css" media="screen, projection">
 <link rel="stylesheet" href="/stylesheets/blueprint/print.css" type="text/css" media="print">
 
-    <%= stylesheet_link_tag 'style.css', 'ui-lightness/jquery-ui-1.8.2.custom.css' %>
+    <%= stylesheet_link_tag 'style.css' %>
   <%= javascript_include_tag 'jquery-1.4.2.min.js', 'jquery-ui-1.8.2.custom.min.js' %>
   <%= javascript_include_tag 'comunication.js', 'cuco.js', 'cuco_menu.js' %>
   
