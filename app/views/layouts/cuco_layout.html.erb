@@ -10,7 +10,7 @@
 
     <%= stylesheet_link_tag 'style.css' %>
   <%= javascript_include_tag 'jquery-1.4.2.min.js', 'jquery-ui-1.8.2.custom.min.js' %>
-  <%= javascript_include_tag 'comunication.js', 'cuco.js', 'cuco_menu.js' %>
+  <%= javascript_include_tag 'comunication.js', 'cuco.js', 'project_tree.js' %>
   
 
 
@@ -23,6 +23,7 @@
     <div class="container">
       <span id="span-top"></span>
       <%= yield %>
+      <div class="clear"></div>
       <span id="span-bot"></span>
     </div>
   </body>

@@ -28,7 +28,6 @@ $('.task').live('click', function(){
   pomo = new Pomodoro( t.attr('task_id') );
   $("#pomodoro").show();
   // show TODO list
-  $('#to_do_list').show();
 })
 
 /*function show() {
