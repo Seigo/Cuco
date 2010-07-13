@@ -1,5 +1,7 @@
 body { background-color:#586362; }
 .container { background-image: url(../images/notebook-line.jpg); background-position:left; background-repeat:repeat-y; }
+#span-top { height:10px; background: url(../images/span-top.png) top repeat-x; display:block; margin:0 150px 0 6px; }
+#span-bot { height:10px; background: url(../images/span-bot.png) bottom repeat-x; display:block; margin:0 150px 0 6px; }
 
 .project { color:#000099 }
 .task { color:#006600 }
