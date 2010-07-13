@@ -86,11 +86,11 @@ function require_todo_today_err(data, textStatus, errorThrown){
 
 */
 
-function save_pomodoro(){
-	var _init_time = new Date
-	var _end_time = new Date
+function save_pomodoro(init_time, end_time, task_id, i_interruption, e_interruption, comment){
+	//var _init_time = new Date
+	//var _end_time = new Date
 	
-	_init_time.getTime
+	//_init_time.getTime
 	
 	j.ajax({
 		url: '/app/save_pomodoro',
@@ -99,11 +99,12 @@ function save_pomodoro(){
 		success: save_pomodoro_suc,
 		error:   save_pomodoro_err,
 		data: {
-			comment : "",
-			percentage : 100,
-			task_id : 5,
-			init_time : _init_time.to_ruby(),
-			end_time  : _end_time.to_ruby()	
+			comment : comment,
+			task_id : task_id,
+			init_time : init_time.to_ruby(),
+			end_time  : end_time.to_ruby(),
+			i_interruption : i_interruption, 
+			e_interruption : e_interruption
 		}
 	})
 	  //params[:comment] && params[:percentage] && params[:task_id] && params[:init_time] && params[:end_time]
@@ -139,6 +140,7 @@ function save_todo(tasks_id){
 }
 
 function save_todo_suc(data){
+	
 	alert("TODO LIST FOI SALVA")
 }
 

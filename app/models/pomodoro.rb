@@ -4,16 +4,26 @@ class Pomodoro < ActiveRecord::Base
   belongs_to :user
   belongs_to :task
   
-  validates_presence_of :task_id, :user_id, :init_time, :end_time, :percentage
+  validates_presence_of :task_id, :user_id, :init_time, :end_time#, :percentage
   validate :check_dates, :check_ownage
   
-  before_save :cap_percentage
+  #before_save :cap_percentage  def cap_percentage    self.percentage = 100 if self.percentage > 100.0    self.percentage = 0 if self.percentage < 0  end
+  before_save :cap_interruptions
+  after_save :update_task_overall
   
-  def cap_percentage
-    self.percentage = 100 if self.percentage > 100.0
-    self.percentage = 0 if self.percentage < 0
+  def cap_interruptions
+    self.e_interruption = 100 if self.e_interruption > 100.0 
+    self.i_interruption = 100 if self.i_interruption > 100.0
+    
+    self.e_interruption = 0 if self.e_interruption < 0.0 
+    self.i_interruption = 0 if self.i_interruption < 0.0 
   end
   
+  def update_task_overall
+    task = self.task
+    task.overall ||= ""
+    task.overall << 'X'+ "'"*self.i_interruption + "-"*self.e_interruption
+  end
   
   def check_dates
     # TODO the init_time must be less then the end_time

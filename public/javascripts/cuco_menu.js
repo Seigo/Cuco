@@ -24,8 +24,8 @@ $('.task').live('click', function(){
   var t = $(this);
   $('#task_tree').hide();
   $("#task_name").html( t.html() );
-  $("#current_task_id").html( t.attr('task_id') );
-  pomo = new Pomodoro();
+  //$("#current_task_id").html( t.attr('task_id') );
+  pomo = new Pomodoro( t.attr('task_id') );
   $("#pomodoro").show();
 })
 

@@ -38,12 +38,16 @@ function ProgressBar(pomodoro, pomodoro_size){
   instance.progressIncrement = progressIncrement;
 }
 
-function Pomodoro() { // estados possíveis: // "parado", "trabalhando", "fim_trabalho", "intervalo", "fim_intervalo", "cucos_gone_mad"
+function Pomodoro( task_id ) { // estados possíveis: // "parado", "trabalhando", "fim_trabalho", "intervalo", "fim_intervalo", "cucos_gone_mad"
   var instance = this;
+	instance.task_id = task_id
   instance.progressBar = null;
   instance.status = "parado";
   instance.pomodoro_duration = 0.2; //minutos
   instance.break_duration = 0.1; //minutos
+  
+	instance.init_time = null;
+	instance.end_time = null;
   
   function cuco_click() {
     if(instance.status == "parado") { // tava parado, começou a trampar
@@ -70,10 +74,13 @@ function Pomodoro() { // estados possíveis: // "parado", "trabalhando", "fim_tr
     }
   }
   function finished() {
-    if(instance.status == "trabalhando") { 
-      $("#cuco_balloon").html("<p>You worked enough. Take a break!</p>");
-      //alert("Take a Break!");
+    if(instance.status == "trabalhando") {
       instance.status = "fim_trabalho";
+			instance.end_time = new Date()
+      $("#cuco_balloon").html("<p>You worked enough. Take a break!</p>");
+			instance.comment = prompt("Any comment to record on this Pomodoro?", "")
+			save_pomodoro( instance.init_time, instance.end_time, instance.task_id,
+										 0, 0, instance.comment)
     }
     else if(instance.status == "intervalo") {
       $("#cuco_balloon").html("<p>Idle time is over. Let's get back to work!</p>");
@@ -98,6 +105,7 @@ function Pomodoro() { // estados possíveis: // "parado", "trabalhando", "fim_tr
     instance.progressBar = new ProgressBar(instance, instance.pomodoro_duration);
     instance.progressBar.start();
     instance.status = "trabalhando";
+		instance.init_time = new Date();
   }
   function start_break() {
     instance.progressBar = new ProgressBar(instance, instance.break_duration);

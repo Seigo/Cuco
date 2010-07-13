@@ -12,8 +12,8 @@
     <tr>
       <td><%=h pomodoro.user_id %></td>
       <td><%=h pomodoro.task_id %></td>
-      <td><%=h pomodoro.init_time %></td>
-      <td><%=h pomodoro.end_time %></td>
+      <td><%=h pomodoro.init_time.strftime('%a %H:%M') %> </td>
+      <td> .. <%=h pomodoro.end_time.strftime(' %H:%M') %></td>
       <td><%=h pomodoro.comment %></td>
       <td><%= link_to "Show", pomodoro %></td>
       <td><%= link_to "Edit", edit_pomodoro_path(pomodoro) %></td>
