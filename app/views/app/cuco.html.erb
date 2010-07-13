@@ -12,22 +12,21 @@ $(document).ready(function (){
 //-->
 </script>
 
-<div id="task_tree">
+<div id="task_tree" class="prepend-2 append-4">
 </div>
 
-<div id="pomodoro" style="display:none;">
+<div id="pomodoro" class="prepend-2 append-4" style="display:none;">
 
   <h1 id="task_name">Task 101</h1>
   <input type="hidden" id="current_task_id"/>
   <!--hr-->
-  <div class="cuco_button"><input type="button" id="cuco_button" onclick="pomo.cuco_click()" /></div>
-  <div id="cuco_balloon"class="cuco_balloon"></div>
+  <div class="cuco_button span-3"><input type="button" id="cuco_button" onclick="pomo.cuco_click()" /></div>
+  <div id="cuco_balloon" class="cuco_balloon span-15 last"></div>
   <!--div class="stop_button"><input type="button" id="stop_button" onclick="pomo.stop_pomodoro()" /-->
   <!--hr-->
   <!-- Progressbar -->
-  <div id="progressbar"></div>
-  <div id="timer"></div>
-  <div class="clear"></div>
+  <div id="progressbar" class="span-14 last"></div>
+  <div id="timer" class="span-1 append-14 last"></div>
   
   <div class="span-18" id="to_do_list">
   <table>
