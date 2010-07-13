@@ -9,10 +9,10 @@ function require_projects_suc(data){
     t = $('#task_tree');
     t.html("");
     $(data).each(function(i, e){
-      t.append('<h1 class="project">' + e.name + '</h1>');
+      t.append('<span class="project">' + e.name + '</span><br>');
       
       $(e.tasks).each(function(i, e){
-        t.append('<h2 class="task" task_id="' + e.id + '">' + e.name + '</h2>');
+        t.append('<span class="task" task_id="' + e.id + '">' + e.name + '</span><br>');
       })
       
     })    
@@ -27,6 +27,8 @@ $('.task').live('click', function(){
   $("#current_task_id").html( t.attr('task_id') );
   pomo = new Pomodoro();
   $("#pomodoro").show();
+  // show TODO list
+  $('#to_do_list').show();
 })
 
 /*function show() {
