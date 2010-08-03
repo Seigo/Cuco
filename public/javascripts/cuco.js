@@ -84,7 +84,7 @@ function Pomodoro( task_id ) { // estados possíveis: // "parado", "trabalhando"
     }
     else if(instance.status == "intervalo") {
       $("#cuco_balloon").html("<p>Idle time is over. Let's get back to work!</p>");
-      //alert("Back to work!")
+      alert("Back to work!");
       instance.status = "fim_intervalo";
     }
     else {
