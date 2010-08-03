@@ -43,8 +43,8 @@ function Pomodoro( task_id ) { // estados possíveis: // "parado", "trabalhando"
 	instance.task_id = task_id
   instance.progressBar = null;
   instance.status = "parado";
-  instance.pomodoro_duration = 0.2; //minutos
-  instance.break_duration = 0.1; //minutos
+  instance.pomodoro_duration = 25.0; //minutos
+  instance.break_duration = 5.0; //minutos
   
 	instance.init_time = null;
 	instance.end_time = null;
