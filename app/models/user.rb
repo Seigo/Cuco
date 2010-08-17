@@ -1,6 +1,7 @@
 class User < ActiveRecord::Base
   has_many :project, :dependent => :destroy
   has_many :task, :dependent => :destroy
+  has_many :pomodoros
   
   # new columns need to be added here to be writable through mass assignment
   attr_accessible :username, :email, :password, :password_confirmation

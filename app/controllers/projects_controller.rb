@@ -31,6 +31,51 @@ class ProjectsController < ApplicationController
       format.xml  { render :xml => @project }
     end
   end
+  
+  def full_graph
+    @project = Project.find(params[:id])
+    
+    # Separete pomos which user has done on each task
+    users_id = {}
+    task_user_work = {}
+    @tasks = @project.tasks( :order => "created_at ASC" )
+    @tasks.each do |t|
+       task_user_work[t.id] = {}
+       t.pomodoros.each do |p|
+         users_id[p.user_id] = true
+         task_user_work[t.id][p.user_id] = task_user_work[t.id][p.user_id].to_i + 1
+       end
+    end
+    data = []
+    user_names = []
+    users_id.each do |k,v| # use only k
+      user_names.push User.find(k).username# save for the :legend
+      arr = [] #data set, represents work done by user k on each task on this project
+      @tasks.each do |t|
+        arr.push task_user_work[t.id][k].to_i
+      end
+      data.push arr.reverse # why is it reversed?
+    end
+    
+    #data = [[1,2,3,4,5], [5,4,3,2,1]]
+    #prova do console: Task.first( :conditions => {:name  => 'Layout'}).pomodoros.count
+    
+    max = data.flatten.max*1.0
+    label_x = ([0] + Array.new(9){ |i| max/9*(i+1) }).map{ |x| sprintf( "%.1f", x) }
+    
+    @gc = Gchart.bar(:data => data,
+                     :bar_width_and_spacing => { :width => 5, :spacing => 2, :group_spacing => 12},
+                     :size => '500x500',
+                     :bar_colors => 'FF0000,00FF00',
+                     :stacked => false, 
+                     :orientation => 'horizontal',
+                     :axis_with_labels => ['y', 'x'],
+                     :axis_labels => [(@tasks.map &:name), label_x ], #, (0..80).to_a.join('|')
+                     #:max_value => false,
+                     :legend => user_names, #["User1", "User2"],
+                     :custom => 'chdlp=b'
+                     )
+  end
 
   # GET /projects/new
   # GET /projects/new.xml
