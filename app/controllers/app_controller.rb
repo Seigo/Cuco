@@ -5,9 +5,24 @@ class AppController < ApplicationController
   
   
   def index
+    data = [[1,2,3,4,5], [5,4,3,2,1]]
+    max = data.flatten.max*1.0
+    label_x = ([0] + Array.new(9){ |i| max/9*(i+1) }).map{ |x| sprintf( "%.1f", x) }
     
+    @gc = Gchart.bar(:data => data,
+                     :bar_width_and_spacing => { :width => 5, :spacing => 2, :group_spacing => 12},
+                     :size => '500x500',
+                     :bar_colors => 'FF0000,00FF00',
+                     :stacked => false, 
+                     :orientation => 'horizontal',
+                     :axis_with_labels => ['y', 'x'],
+                     :axis_labels => ['task1|task2|task3|task4|task5|task6', label_x ], #, (0..80).to_a.join('|')
+                     #:max_value => false,
+                     :legend => ["User1", "User2"],
+                     :custom => 'chdlp=b'
+                     )
   end
-                                    
+  
 =begin
       _|_|_|    _|_|_|_|    _|_|    _|_|_|    
       _|    _|  _|        _|    _|  _|    _|  
