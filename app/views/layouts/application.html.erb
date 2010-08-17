@@ -5,7 +5,8 @@
     <!-- <title><%= h(yield(:title) || "Untitled") %></title> -->
 	<title> <%= controller.controller_name.capitalize %> :: Cuco - A pomodoro time tracker</title>
 	
-  <%= stylesheet_link_tag 'application', 'horinaja.css' %>
+  <!--%= stylesheet_link_tag 'application', 'horinaja.css' %-->
+  <%= stylesheet_link_tag 'style', 'horinaja.css' %>
 	
 	
 	<%= javascript_include_tag 'jquery-1.4.2.min.js', 'jquery.mousewheel.min.js', 'class.horinaja.jquery.js' %>
@@ -17,14 +18,14 @@
 	
     <%= yield(:head) %> <!-- ? -->
   </head>
-  <body>
+  <body class="container" style="padding-left:80px">
   	
 	<div id="masternav">
 		<% if current_user %>
-		  <span id="cuco-launch" class="item"> <a href="javascript:newwindow=window.open('/app/cuco','','resizable=1,toolbar=0,location=0,status=0,menubar=0,scrollbars=1,width=550,height=450');newwindow.focus();">LAUNCH!</a> </span> |
+		  <!--span id="cuco-launch" class="item"> <a href="javascript:newwindow=window.open('/app/cuco','','resizable=1,toolbar=0,location=0,status=0,menubar=0,scrollbars=1,width=550,height=450');newwindow.focus();">LAUNCH!</a> </span> |-->
 			<span class="item"> <a href="/">Home</a> </span> |   
 			<span class="item autolink"> Projects </span> |  
-			<span class="item autolink"> Tasks </span> |
+			<!--span class="item autolink"> Tasks </span> | -->
 			<span class="item autolink"> Pomodoros </span> | 
 			<span class="item"> 
 				<%= link_to "Log Out", logout_url %>
@@ -48,6 +49,7 @@
 	
 	
     <div id="container">
+		
       <% flash.each do |name, msg| -%>
         <%= content_tag :div, msg, :id => "flash_#{name}" %>
       <% end -%>
@@ -57,6 +59,8 @@
       <% end -%>
       
       <%= yield %>
+	  
     </div>
+	
   </body>
 </html>

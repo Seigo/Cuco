@@ -50,8 +50,10 @@ class TasksController < ApplicationController
     respond_to do |format|
       if @task.save
         flash[:notice] = 'Task was successfully created.'
-        format.html { redirect_to(@task) }
-        format.xml  { render :xml => @task, :status => :created, :location => @task }
+        #format.html { redirect_to(@task) }
+        #format.xml  { render :xml => @task, :status => :created, :location => @task }
+        format.html { redirect_to(@task.project)}
+        format.xml { render :xml => @task, :status => :created, :location => @task }
       else
         @projects = Project.all
         format.html { render :action => "new" }
