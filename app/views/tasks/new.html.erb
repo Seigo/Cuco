@@ -3,10 +3,8 @@
 <% form_for(@task) do |f| %>
   <%= f.error_messages %>
 
-  <p>
-    <%= f.label :project_id, "Projeto" %><br />
-    <%= project_select(f) %>
-  </p>
+  <%= f.hidden_field(:project_id, :value => params[:project]) %>
+
   <p>
     <%= f.label :name %><br />
     <%= f.text_field :name %>

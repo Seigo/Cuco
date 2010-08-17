@@ -1,10 +1,10 @@
 <p>
   <b>Project:</b>
-  <%=h @task.project_id %>
+  <%=h @task.project.name %>
 </p>
 
 <p>
-  <b>Name:</b>
+  <b>Task name:</b>
   <%=h @task.name %>
 </p>
 
@@ -15,4 +15,8 @@
 
 
 <%= link_to 'Edit', edit_task_path(@task) %> |
-<%= link_to 'Back', tasks_path %>
+<%= link_to 'Back', @task.project %>
+
+<p> </p><br />
+
+<span>CUCO APP HERE!</span>
