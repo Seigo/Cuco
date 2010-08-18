@@ -16,9 +16,13 @@
     <%= f.text_field :description, :size => 30, :maxlength => 250 %>
   </p>
   <p>
+    <%= f.label :expected_pomo %><br />
+    <%= f.text_field :expected_pomo %>
+  </p>
+  <p>
     <%= f.submit 'Update' %>
   </p>
 <% end %>
 
 <%= link_to 'Show', @task %> |
-<%= link_to 'Back', tasks_path %>
+<%= link_to 'Back', @task.project %>
