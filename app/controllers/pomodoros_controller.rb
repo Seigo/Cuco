@@ -41,6 +41,6 @@ class PomodorosController < ApplicationController
     @pomodoro = Pomodoro.find(params[:id])
     @pomodoro.destroy
     flash[:notice] = "Successfully destroyed pomodoro."
-    redirect_to pomodoros_url
+    redirect_to request.env["HTTP_REFERER"]
   end
 end

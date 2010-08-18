@@ -14,18 +14,16 @@
 </p>
 
 
-<%= link_to 'Edit', edit_task_path(@task) %> |
+<%= link_to 'Edit', edit_task_path(@task) %>
 
 <p> </p><br />
 
-<span>CUCO APP HERE!</span>
 
 <%= stylesheet_link_tag 'ui-lightness/jquery-ui-1.8.2.custom.css' %>
 <link rel="stylesheet" href="/stylesheets/blueprint/screen.css" type="text/css" media="screen, projection">
 <link rel="stylesheet" href="/stylesheets/blueprint/print.css" type="text/css" media="print">
-<%= stylesheet_link_tag 'style.css' %>
 
-<%= javascript_include_tag 'jquery-1.4.2.min.js', 'jquery-ui-1.8.2.custom.min.js' %>
+<%= javascript_include_tag 'jquery-ui-1.8.2.custom.min.js' %>
 <%= javascript_include_tag 'comunication.js', 'cuco.js' %>
 <script type="text/javascript">    j = jQuery;  </script>
 
@@ -35,7 +33,14 @@ var pomo = null;
 var task_id = "<%= @task.id %>"
 
 $(document).ready(function (){
-  pomo = new Pomodoro( task_id, true );
+	pomo = new Pomodoro( task_id, true );
+	j('body').click(function(e){
+		//debugger
+		if( e.target.id != 'cuco_button' && ( pomo && pomo.status == 'trabalhando' ) && (e.originalTarget.tagName == 'INPUT' || e.originalTarget.tagName == 'A') ){
+			e.stopPropagation()
+			return confirm('Deseja abandonar este pomodoro?')
+		}
+	})
 })
 //-->
 </script>
@@ -45,7 +50,7 @@ $(document).ready(function (){
 
 <div id="pomodoro" class="prepend-2 append-4" >
 
-  <h1 id="task_name"><%= @task.name%></h1>
+  <h1 id="task_name">Cuco System™</h1>
   <input type="hidden" id="current_task_id"/>
   <!--hr-->
   <div class="cuco_button span-3"><input type="button" id="cuco_button" onclick="pomo.cuco_click()" /></div>
@@ -72,9 +77,30 @@ $(document).ready(function (){
   
 </div>
 
-
-
-
-
+<div class="clear"></div>
+<br />
+<br />
+<br />
+<table>
+  <tr>
+    <th>User</th>
+    <th>Task</th>
+    <th>Init Time</th>
+    <th>End Time</th>
+    <th>Comment</th>
+  </tr>
+  <% for pomodoro in @task.pomodoros(:order => 'created_at ASC') %>
+    <tr>
+      <td><%=h pomodoro.user_id %></td>
+      <td><%=h pomodoro.task_id %></td>
+      <td><%=h pomodoro.init_time.strftime('%a %H:%M') %> </td>
+      <td> .. <%=h pomodoro.end_time.strftime(' %H:%M') %></td>
+      <td><%=h pomodoro.comment %></td>
+      <!--td><%= link_to "Show", pomodoro %></td>
+      <td><%= link_to "Edit", edit_pomodoro_path(pomodoro) %></td-->
+      <td><%= link_to "Deny", pomodoro, :confirm => 'You want to cancel this pomo for sure?', :method => :delete %></td>
+    </tr>
+  <% end %>
+</table>
 
 <%= link_to 'Back', @task.project %>

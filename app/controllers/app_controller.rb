@@ -70,7 +70,6 @@ class AppController < ApplicationController
 =end
   
   def save_pomodoro
-    {"comment"=>"twas good", "end_time"=>"2010-07-13 16:28:20", "init_time"=>"2010-07-13 16:28:7"}
     unless ( params[:comment] && params[:task_id] && params[:init_time] && params[:end_time] && params[:i_interruption] && params[:e_interruption] )
       raise('Params missing') # if this happens means the JS failed to pass something, our error all the way. Or if war some lammer, just ignore alike. Ops.. did I just said 'alike'? -Nasty ;D
     end
@@ -82,8 +81,8 @@ class AppController < ApplicationController
     p = Pomodoro.new({
                   :user_id    => current_user.id,
                   :task_id    => params[:task_id],
-                  :init_time  => params[:init_time],
-                  :end_time   => params[:end_time],
+                  :init_time  => Time.parse( params[:init_time] ),
+                  :end_time   => Time.parse( params[:end_time] ),
                   :comment    => params[:comment]
     })
     

@@ -5,10 +5,10 @@ class Pomodoro < ActiveRecord::Base
   belongs_to :task
   
   validates_presence_of :task_id, :user_id, :init_time, :end_time#, :percentage
-  validate :check_dates, :check_ownage
+  # validate :check_dates, :check_ownage
   
   #before_save :cap_percentage  def cap_percentage    self.percentage = 100 if self.percentage > 100.0    self.percentage = 0 if self.percentage < 0  end
-  before_save :cap_interruptions
+  # we don't have yet this feature #before_save :cap_interruptions
   after_create :update_task_overall
   
   def cap_interruptions

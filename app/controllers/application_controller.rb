@@ -15,12 +15,17 @@ class ApplicationController < ActionController::Base
   # filter_parameter_logging :password
   
   #logger.info ">>> #{ Rails.public_methods.sort.join('   ') }"
-  before_filter :login?
+  before_filter :login?, :timezone
   
   def login?
     unless current_user || [ 'user_sessions', 'users'  ].include?( params['controller'] )
       flash[:error] = "Login or create an Account First"
       redirect_to( login_url )
     end
+  end
+  
+  def timezone
+    # TODO
+    Time.zone = 'Brasilia'
   end
 end
