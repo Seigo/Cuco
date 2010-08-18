@@ -84,17 +84,21 @@ $(document).ready(function (){
 <br />
 <table>
   <tr>
-    <th>User</th>
-    <th>Task</th>
+    <th><b>User</b></th>
+    <th>Day</th>
     <th>Init Time</th>
+	<th> </th>
     <th>End Time</th>
     <th>Comment</th>
+	<th> </th>
   </tr>
   <% for pomodoro in @task.pomodoros(:order => 'created_at ASC') %>
     <tr>
-      <td><%=h pomodoro.user.username %></td>
-      <td><%=h pomodoro.init_time.strftime('%a %H:%M') %> </td>
-      <td> .. <%=h pomodoro.end_time.strftime(' %H:%M') %></td>
+      <td><b><%=h pomodoro.user.username %></b></td>
+	  <td><%=h pomodoro.init_time.strftime('%a') %></td>
+      <td><%=h pomodoro.init_time.strftime('%H:%M') %> </td>
+	  <td> .. </td>
+      <td><%=h pomodoro.end_time.strftime(' %H:%M') %></td>
       <td><%=h pomodoro.comment %></td>
       <!--td><%= link_to "Show", pomodoro %></td>
       <td><%= link_to "Edit", edit_pomodoro_path(pomodoro) %></td-->
