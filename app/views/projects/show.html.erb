@@ -19,7 +19,7 @@
   	</tr>
 	<% @project.tasks.each do |task| %>
 	<tr>
-		<td class="task_name"><%=h task.name %></td>
+		<td class="task_name"><%= link_to (h task.name), task %></td>
     	<td class="task_description"><%=h task.description %></td>
 		<td class="task_expected_pomo"><%=h task.expected_pomo %></td>
 		<td><%=h task.overall %></td>

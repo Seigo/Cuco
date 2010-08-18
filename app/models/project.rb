@@ -1,6 +1,6 @@
 class Project < ActiveRecord::Base
   has_many :tasks, :dependent => :destroy
-  belongs_to :user
+  #belongs_to :user
   
   attr_accessor :task_cache
   
