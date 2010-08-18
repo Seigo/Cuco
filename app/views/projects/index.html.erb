@@ -7,8 +7,8 @@
 
 <% @projects.each do |project| %>
   <tr>
-    <td><%=h project.name %></td>
-    <td><%= link_to 'Show', project %></td>
+    <td><%= link_to (h project.name), project %></td>
+    <!--td><%= link_to '| Go to project |', project %></td-->
 	<td><%= link_to 'Gráfico de trabalho', url_for( :controller => 'projects', :action => 'full_graph', :id => project.id) %></td>
     <td><%= link_to 'Edit', edit_project_path(project) %></td>
     <td><%= link_to 'Destroy', project, :confirm => 'Are you sure?', :method => :delete %></td>
