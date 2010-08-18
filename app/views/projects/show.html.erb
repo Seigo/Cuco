@@ -8,7 +8,7 @@
 <%= link_to 'Back', projects_path %>
 
 <p> </p>
-<table>
+<table id="task_table">
 	<tr>
 		<th>TASKS</th>
 	<tr>
@@ -18,8 +18,8 @@
   	</tr>
 	<% @project.tasks.each do |task| %>
 	<tr>
-		<td><%=h task.name %></td>
-    	<td><%=h task.description %></td>
+		<td class="task_name"><%=h task.name %></td>
+    	<td class="task_description"><%=h task.description %></td>
 		<td><%=h task.overall %></td>
     	<td><%= link_to 'Show', task %></td>
     	<td><%= link_to 'Edit', edit_task_path(task) %></td>

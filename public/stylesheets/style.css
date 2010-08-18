@@ -3,6 +3,11 @@ body { background-color:#586362; }
 #span-top { height:10px; background: url(../images/span-top.png) top repeat-x; display:block; margin:0 150px 0 6px; }
 #span-bot { height:10px; background: url(../images/span-bot.png) bottom repeat-x; display:block; margin:0 150px 0 6px; }
 
+/*#ts_right{ text-align:right; width: 100%; padding-top:1px !important; margin-right:8px; padding-bottom:3px !important; }*/
+
+#task_table td.task_description { max-width:350px; overflow-x:hidden; }
+#task_table td.task_name {  }
+
 .project { color:#000099 }
 .task { color:#006600 }
 .task:hover { cursor:crosshair; }
