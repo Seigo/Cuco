@@ -22,7 +22,7 @@ blockquote:before, blockquote:after, q:before, q:after {content:"";}
 blockquote, q {quotes:"" "";}
 a img {border:none;}
 
-/* typography.css */
+/* typography.css *//*
 html {font-size:100.01%;}
 body {font-size:75%;color:#222;background:#fff;font-family:"Helvetica Neue", Arial, Helvetica, sans-serif;}
 h1, h2, h3, h4, h5, h6 {font-weight:normal;color:#111;}
@@ -74,7 +74,7 @@ caption {background:#eee;}
 .last {margin-right:0;padding-right:0;}
 .top {margin-top:0;padding-top:0;}
 .bottom {margin-bottom:0;padding-bottom:0;}
-
+*/
 /* forms.css */
 label {font-weight:bold;}
 fieldset {padding:1.4em;margin:0 0 1.5em 0;border:1px solid #ccc;}

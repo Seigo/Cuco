@@ -15,8 +15,66 @@
 
 
 <%= link_to 'Edit', edit_task_path(@task) %> |
-<%= link_to 'Back', @task.project %>
 
 <p> </p><br />
 
 <span>CUCO APP HERE!</span>
+
+<%= stylesheet_link_tag 'ui-lightness/jquery-ui-1.8.2.custom.css' %>
+<link rel="stylesheet" href="/stylesheets/blueprint/screen.css" type="text/css" media="screen, projection">
+<link rel="stylesheet" href="/stylesheets/blueprint/print.css" type="text/css" media="print">
+<%= stylesheet_link_tag 'style.css' %>
+
+<%= javascript_include_tag 'jquery-1.4.2.min.js', 'jquery-ui-1.8.2.custom.min.js' %>
+<%= javascript_include_tag 'comunication.js', 'cuco.js' %>
+<script type="text/javascript">    j = jQuery;  </script>
+
+<script type="text/javascript">
+//<!--
+var pomo = null;
+var task_id = "<%= @task.id %>"
+
+$(document).ready(function (){
+  pomo = new Pomodoro( task_id, true );
+})
+//-->
+</script>
+
+<div id="task_tree" class="prepend-2 append-4">
+</div>
+
+<div id="pomodoro" class="prepend-2 append-4" >
+
+  <h1 id="task_name"><%= @task.name%></h1>
+  <input type="hidden" id="current_task_id"/>
+  <!--hr-->
+  <div class="cuco_button span-3"><input type="button" id="cuco_button" onclick="pomo.cuco_click()" /></div>
+  <div id="cuco_balloon" class="cuco_balloon span-6 append-9 last"></div>
+  <!--hr-->
+  <!-- Progressbar -->
+  <div id="progressbar" class="span-6 last"></div>
+  <div id="timer" class="span-1 append-14 last"></div>
+  
+  <div class="span-9 append-9 last" id="to_do_list">
+    <table>
+      <thead>
+        TO DO List!
+      </thead>
+      <tbody>
+        <tr>
+          <td>Column 1</td>
+          <td>Column 2</td>
+          <td>Column 3</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  
+</div>
+
+
+
+
+
+
+<%= link_to 'Back', @task.project %>
