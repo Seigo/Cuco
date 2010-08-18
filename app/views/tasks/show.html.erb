@@ -2,7 +2,7 @@
 <%= link_to 'Return to project', @task.project %>
 
 <!--% title @task.name %-->
-<hr style="width:700px" />
+<hr style="width:500px" />
 <br />
 <h1 style="display:inline;" title="Task: <%=h @task.name %>"> <%=h @task.name %> </h1>
 <%= link_to 'Edit', edit_task_path(@task) %>
@@ -61,7 +61,7 @@ $(document).ready(function (){
   <div id="progressbar" class="span-6 last"></div>
   <div id="timer" class="span-1 append-14 last"></div>
   
-  <div class="span-9 append-9 last" id="to_do_list">
+  <!--div class="span-9 append-9 last" id="to_do_list">
     <table>
       <thead>
         TO DO List!
@@ -74,7 +74,7 @@ $(document).ready(function (){
         </tr>
       </tbody>
     </table>
-  </div>
+  </div-->
   
 </div>
 
