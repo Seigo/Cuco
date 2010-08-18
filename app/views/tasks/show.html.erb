@@ -1,20 +1,21 @@
-<p>
-  <b>Project:</b>
-  <%=h @task.project.name %>
-</p>
+<h2 style="display:inline;" title="Project: <%=h @task.project.name %>"> <%=h @task.project.name %> </h2>
+<%= link_to 'Return to project', @task.project %>
 
-<p>
-  <b>Task name:</b>
-  <%=h @task.name %>
-</p>
-
-<p>
-  <b>Description:</b>
-  <%=h @task.description %>
-</p>
-
-
+<!--% title @task.name %-->
+<hr style="width:700px" />
+<br />
+<h1 style="display:inline;" title="Task: <%=h @task.name %>"> <%=h @task.name %> </h1>
 <%= link_to 'Edit', edit_task_path(@task) %>
+
+
+
+
+<p>
+  <pre style="padding-left:25px"><%=h @task.description %></pre>
+</p>
+
+
+
 
 <p> </p><br />
 
@@ -50,7 +51,7 @@ $(document).ready(function (){
 
 <div id="pomodoro" class="prepend-2 append-4" >
 
-  <h1 id="task_name">Cuco System™</h1>
+  <h3 id="task_name">Cuco System™</h3>
   <input type="hidden" id="current_task_id"/>
   <!--hr-->
   <div class="cuco_button span-3"><input type="button" id="cuco_button" onclick="pomo.cuco_click()" /></div>
@@ -91,8 +92,7 @@ $(document).ready(function (){
   </tr>
   <% for pomodoro in @task.pomodoros(:order => 'created_at ASC') %>
     <tr>
-      <td><%=h pomodoro.user_id %></td>
-      <td><%=h pomodoro.task_id %></td>
+      <td><%=h pomodoro.user.username %></td>
       <td><%=h pomodoro.init_time.strftime('%a %H:%M') %> </td>
       <td> .. <%=h pomodoro.end_time.strftime(' %H:%M') %></td>
       <td><%=h pomodoro.comment %></td>
@@ -102,5 +102,3 @@ $(document).ready(function (){
     </tr>
   <% end %>
 </table>
-
-<%= link_to 'Back', @task.project %>
