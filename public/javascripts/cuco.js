@@ -38,13 +38,14 @@ function ProgressBar(pomodoro, pomodoro_size){
   instance.progressIncrement = progressIncrement;
 }
 
-function Pomodoro( task_id ) { // estados possíveis: // "parado", "trabalhando", "fim_trabalho", "intervalo", "fim_intervalo", "cucos_gone_mad"
+function Pomodoro( task_id, embedded ) { // estados possíveis: // "parado", "trabalhando", "fim_trabalho", "intervalo", "fim_intervalo", "cucos_gone_mad"
   var instance = this;
 	instance.task_id = task_id
   instance.progressBar = null;
   instance.status = "parado";
   instance.pomodoro_duration = 25.0; //minutos
   instance.break_duration = 5.0; //minutos
+  instance.embedded = (typeof(embedded) == 'undefined') ? false : embedded
   
 	instance.init_time = null;
 	instance.end_time = null;
@@ -96,10 +97,14 @@ function Pomodoro( task_id ) { // estados possíveis: // "parado", "trabalhando"
     instance.progressBar.stop();
     $("#cuco_balloon").html("<p>Cuco is now asleep..</p>");
     instance.status = "parado";
-    $("#pomodoro").hide();
-    // retornar dados sobre os pomodoros?
-    require_projects();
-    $('#task_tree').show();
+    if( instance.embedded ){
+		pomo = new Pomodoro(instance.task_id, instance.embedded)
+	}else{
+		$("#pomodoro").hide();
+		// retornar dados sobre os pomodoros?
+		require_projects();
+		$('#task_tree').show();
+	}
   }
   function start_work() {
     instance.progressBar = new ProgressBar(instance, instance.pomodoro_duration);
