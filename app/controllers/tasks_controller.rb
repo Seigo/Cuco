@@ -52,8 +52,8 @@ class TasksController < ApplicationController
         flash[:notice] = 'Task was successfully created.'
         #format.html { redirect_to(@task) }
         #format.xml  { render :xml => @task, :status => :created, :location => @task }
-        format.html { redirect_to(@task.project)}
-        format.xml { render :xml => @task, :status => :created, :location => @task }
+        format.html { redirect_to(@task.project)} ##
+        format.xml { render :xml => @task, :status => :created, :location => @task } ##
       else
         @projects = Project.all
         format.html { render :action => "new" }
@@ -70,7 +70,8 @@ class TasksController < ApplicationController
     respond_to do |format|
       if @task.update_attributes(params[:task])
         flash[:notice] = 'Task was successfully updated.'
-        format.html { redirect_to(@task) }
+        #format.html { redirect_to(@task) }
+        format.html { redirect_to(@task.project) }
         format.xml  { head :ok }
       else
         @projects = Project.all
@@ -87,7 +88,8 @@ class TasksController < ApplicationController
     @task.destroy
 
     respond_to do |format|
-      format.html { redirect_to(tasks_url) }
+      #format.html { redirect_to(tasks_url) }
+      format.html { redirect_to(@task.project) } ##
       format.xml  { head :ok }
     end
   end

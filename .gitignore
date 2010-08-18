@@ -2,6 +2,7 @@
 tmp/*
 *.log
 *.sqlite3
+public/images/tmp/*
 
 db/schema.rb
 .loadpath

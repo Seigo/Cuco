@@ -22,10 +22,11 @@
 	<div id="masternav">
 		<% if current_user %>
 		  <!--span id="cuco-launch" class="item"> <a href="javascript:newwindow=window.open('/app/cuco','','resizable=1,toolbar=0,location=0,status=0,menubar=0,scrollbars=1,width=550,height=450');newwindow.focus();">LAUNCH!</a> </span> |-->
+			<img src="images/cuco-small.png" />
 			<span class="item"> <a href="/">Home</a> </span> |   
-			<span class="item autolink"> Projects </span> |  
+			<span class="item"><a href="/projects">Projects</a></span> |  
 			<!--span class="item autolink"> Tasks </span> | -->
-			<span class="item autolink"> Pomodoros </span> | 
+			<span class="item"><a href="/pomodoros">Pomodoros</a></span> | 
 			<span class="item"> 
 				<%= link_to "Log Out", logout_url %>
 		<% else %>
@@ -34,18 +35,6 @@
 		<% end %>
 			</span>
 	</div>
-	
-	<script type="text/javascript">
-		// Turns the autolinks from the |masternav| into real links
-		var itens = document.getElementById("masternav").children
-		for (var i=0; i<itens.length; i++) {
-			if(itens[i].getAttribute('class').match( /autolink/ )){
-				var content = itens[i].innerHTML.replace(" ", "")
-				itens[i].innerHTML = "<a href='/" + content.toLowerCase() + "'> "+content+" </a> "
-			}
-		};
-	</script>
-	
 	
     <div id="container">
 		
