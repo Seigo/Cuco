@@ -12,6 +12,13 @@
 	<td><%= link_to 'Gráfico de trabalho', url_for( :controller => 'projects', :action => 'full_graph', :id => project.id) %></td>
     <td><%= link_to 'Edit', edit_project_path(project) %></td>
     <td><%= link_to 'Destroy', project, :confirm => 'Are you sure?', :method => :delete %></td>
+	<td><%= project.count_pomos %>/
+	<% count = 0 %>
+	<% project.tasks.each do |t| %>
+		<% count += t.expected_pomo %>
+	<% end %>
+	<%= count %>	
+	</td>
   </tr>
 <% end %>
 </table>
