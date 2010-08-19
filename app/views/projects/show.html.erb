@@ -22,7 +22,7 @@
 		<td class="task_name"><%= link_to (h task.name), task %></td>
     	<td class="task_description"><%=h task.description %></td>
 		<td class="task_expected_pomo"><%=h task.expected_pomo %></td>
-		<td><%=h task.overall %></td>
+		<td><%=h '|' * task.pomodoros.count %></td>
     	<td><%= link_to 'Show', task %></td>
     	<td><%= link_to 'Edit', edit_task_path(task) %></td>
     	<td><%= link_to 'Destroy', task, :confirm => 'Are you sure?', :method => :delete %></td>

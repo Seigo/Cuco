@@ -7,7 +7,9 @@ body { background-color:#586362; }
 
 #task_table td.task_description { max-width:350px; overflow-x:hidden; }
 #task_table td.task_name { max-width:100px; overflow-x:hidden; }
-#task_table td.task_expected_pomo { max-width:100px; overflow-x:hidden; }
+#task_table td.task_expected_pomo { max-width:100px; overflow-x:hidden; text-align:center; }
+
+#pomo_table td.pomo_comment { max-width:350px; overflow-x:hidden; }
 
 .project { color:#000099 }
 .task { color:#006600 }
