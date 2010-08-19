@@ -89,7 +89,12 @@ class AppController < ApplicationController
     if p.save
       respond_to do |format|
         format.html { redirect_to :action => 'index' }
-        format.js {   render( :json => ["OK"] ) }
+        format.js {   render( :json => ({:user => current_user.username,
+                                         :day => p.init_time.strftime('%a'),
+                                         :init_time => p.init_time.strftime('%H:%M'),
+                                         :end_time => p.end_time.strftime('%H:%M'),
+                                         :comment => p.comment
+                                         }).to_json ) }
       end
     else
       #p.errors.full_messages # ex: ["Task can't be blank", "User can't be blank", "Init time can't be blank", "End time can't be blank", "Percentage can't be blank"]

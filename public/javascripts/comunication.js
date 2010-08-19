@@ -111,6 +111,8 @@ function save_pomodoro(init_time, end_time, task_id, i_interruption, e_interrupt
 }
 
 function save_pomodoro_suc(data){
+	//j("#pomo_table tbody").append("<tr><td>" + data.user_id + "</td><td>" + data.init_time + "</td><td>" + data.init_time + "</td><td>..</td><td>" + data.end_time + "</td><td>" + data.comment + "</td><td>deny</td></tr>");
+	j("#pomo_table tbody").append("<tr><td><b>" + data.user + "</b></td><td>" + data.day + "</td><td>" + data.init_time + "</td><td>..</td><td>" + data.end_time + "</td><td>" + data.comment + "</td><td>Saved</td></tr>");
 	alert("Pomodoro Saved Succesfuly")
 }
 
