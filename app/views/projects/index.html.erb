@@ -15,7 +15,7 @@
 	<td><%= project.count_pomos %>/
 	<% count = 0 %>
 	<% project.tasks.each do |t| %>
-		<% count += t.expected_pomo %>
+		<% count += t.expected_pomo.to_i %>
 	<% end %>
 	<%= count %>	
 	</td>
