@@ -22,17 +22,16 @@
 	<div id="masternav">
 		<% if current_user %>
 		  <!--span id="cuco-launch" class="item"> <a href="javascript:newwindow=window.open('/app/cuco','','resizable=1,toolbar=0,location=0,status=0,menubar=0,scrollbars=1,width=550,height=450');newwindow.focus();">LAUNCH!</a> </span> |-->
-			<img src="images/cuco-small.png" />
-			<span class="item"> <a href="/">Home</a> </span> |   
+			<img src="/images/cuco-small.png" />
 			<span class="item"><a href="/projects">Projects</a></span> |  
 			<!--span class="item autolink"> Tasks </span> | -->
-			<span class="item"><a href="/pomodoros">Pomodoros</a></span> | 
 			<span class="item"> 
 				<%= link_to "Log Out", logout_url %>
 		<% else %>
 				<%= link_to "Log In", login_url %> or 
 				<%= link_to "Create an Account", signup_url %>
 		<% end %>
+			- - - - - <span class="item"><a href="/pomodoros">Pomodoros</a></span> | <span class="item"> <a href="/">Playground (:</a> </span>
 			</span>
 	</div>
 	
