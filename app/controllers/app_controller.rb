@@ -75,8 +75,9 @@ class AppController < ApplicationController
     end
     
     t = Task.find(params[:task_id])
-    # Likely hack attempt, or very bad programming error :P
-    raise('You User has not this task, shall not pass!') unless( t.user_id == current_user.id )
+    # ! One user may create the pomo and the other save, it is ok
+    # raise('You User has not this task, shall not pass!') unless( t.user_id == current_user.id )
+    
     
     p = Pomodoro.new({
                   :user_id    => current_user.id,
