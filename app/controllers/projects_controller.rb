@@ -32,6 +32,41 @@ class ProjectsController < ApplicationController
     end
   end
   
+  def stat_mes
+    @project = Project.find params[:id]
+    
+    if params[:dataa] 
+      @month = Date.new params['dataa']['(1i)'].to_i, params['dataa']['(2i)'].to_i, params['dataa']['(3i)'].to_i
+      @n_month = @month >> 1
+      
+      # find the bounds of the week in the month, by sundays
+      @first_day = @last_day = nil
+      7.times do |i|
+        @first_day = @month - (i).days if !@first_day && (@month - i.days).wday == 0
+        @last_day =  @n_month + (i-1).days if !@last_day  && (@n_month + i.days).wday == 0
+      end
+      
+      
+      @user_pomos = @project.tasks.map{ |x|
+        x.pomodoros.all( :conditions => {:user_id => params[:user_id].to_i}, :order => "init_time ASC" )  
+      }.flatten # :conditions => ["init_time > ? and init_time < ?", first_day.to_time, last_day.to_time]
+      
+      @days = []
+      for d in @first_day..@last_day
+        # TODO require some opt
+        
+        number = @user_pomos.select{ |x| x.init_time.to_date == d }
+        if d == Date.today
+          logger.info ">>OI #{ Time.now.to_date == d }"
+        end
+        
+        @days.push [d.day, number.size]
+      end
+      
+    end
+    
+  end
+  
   def full_graph
     @project = Project.find(params[:id])
     

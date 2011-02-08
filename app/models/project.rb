@@ -10,6 +10,8 @@ class Project < ActiveRecord::Base
   def count_pomos
     self.tasks.count(:all, :joins => :pomodoros)
   end
+  
+  
 =begin
   def count_expected_pomos
     self.tasks.each do |t|

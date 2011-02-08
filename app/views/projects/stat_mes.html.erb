@@ -1,0 +1,71 @@
+<%= form_tag "/projects/stat_mes/#{params[:id]}"  %>
+	<h1>Selecione o mês</h1>
+	<%= select nil , :user_id, User.all.map{ |x| [x.username, x.id] }, { :selected => params[:user_id].to_i } %>
+	<%= date_select 'dataa', '', :start_year => 2011, :end_year => Date.today.year, 
+														:use_month_numbers => true, :order => [ :month, :year], :default => @month %>
+	
+	<input type="submit" value="Ok">
+</form>
+
+<style>
+	#calendario{
+		border-collapse: separate;
+		border-width: 1px;
+		border-style: solid;
+		border-color: black;
+	}
+	#calendario tr{
+		text-align: center;
+		background-color: #EE9;
+	}
+	
+	#calendario tr:hover{
+		background-color: #CEE;
+	}
+	
+	
+</style>
+
+<% if @month  -%>
+ <h2>CALENDAR</h2> <%#= (@user_pomos.map &:comment).join ", " %> <br/>
+ <table id="calendario">
+ 
+   <tr>	
+	 <% %w(SEG TER QUA QUI SEX SAB DOM +).each do |header| %>
+	   <th><%= header %></th>
+	 <% end %>
+	 </tr>
+ <% i = -1 %>
+ <% w_sum = 0 %>
+   <tr>
+ <% @days.each do |day| -%>
+   <% w_sum += day[1]%>
+   <% if i == 6  %>
+	   <td>
+	   	 <b></b>
+			 <br/>
+			 <b><i><%= w_sum %></i></b>
+		 </td>
+	   <% w_sum = 0 %>
+	 <% end %>
+	 <% if i == 6  %> </tr> <% end %>
+   <% if i == 6 %> <tr> <% end %>
+		 <td>
+		 	 <b><%= day[0] %></b>
+			 <br/>
+			 <i><%= day[1] %></i>
+		 </td>
+	 <% i = (i == 6 ? 0 : i+1 )%>
+ <% end -%>
+   <td>
+	 	 <b></b>
+		 <br/>
+		 <b><i><%= w_sum %></i></b>
+	 </td>
+ </tr>
+ </table>
+<!--
+size<%= @days.size %>
+ <%= @first_day %> - <%= @last_day %>
+-->
+<% end -%>
