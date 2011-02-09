@@ -1,5 +1,6 @@
 <%= form_tag "/projects/stat_mes/#{params[:id]}"  %>
 	<h1>Selecione o mês</h1>
+	<h2>Projeto: <%= @project.try :name %></h2>
 	<%= select nil , :user_id, User.all.map{ |x| [x.username, x.id] }, { :selected => params[:user_id].to_i } %>
 	<%= date_select 'dataa', '', :start_year => 2011, :end_year => Date.today.year, 
 														:use_month_numbers => true, :order => [ :month, :year], :default => @month %>
@@ -22,8 +23,6 @@
 	#calendario tr:hover{
 		background-color: #CEE;
 	}
-	
-	
 </style>
 
 <% if @month  -%>
