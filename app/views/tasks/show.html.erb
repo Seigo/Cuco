@@ -35,30 +35,28 @@ var task_id = "<%= @task.id %>"
 
 $(document).ready(function (){
 	pomo = new Pomodoro( task_id, true );
-	j('body').click(function(e){
-		//debugger
-		if( e.target.id != 'cuco_button' && ( pomo && pomo.status == 'trabalhando' ) && (e.originalTarget.tagName == 'INPUT' || e.originalTarget.tagName == 'A') ){
-			e.stopPropagation()
-			return confirm('Deseja abandonar este pomodoro?')
-		}
-	})
 })
 
+// Pergunta antes de abandonar um pomodoro!
 function goodbye(e) {
-  if(!e) e = window.event;
-  //e.cancelBubble is supported by IE - this will kill the bubbling process.
-  e.cancelBubble = true;
-  e.returnValue = 'Deseja sair do jogo?'; //This is displayed on the dialog
-
-  //e.stopPropagation works in Firefox.
-  if (e.stopPropagation) {
-    e.stopPropagation();
-    e.preventDefault();
-  }
-  return ('Deseja sair do jogo?')
+	if(pomo.status == 'trabalhando'){
+		var msg = 'Deseja abandonar este Pomodoro?'
+		
+	  if(!e) e = window.event;
+	  //e.cancelBubble is supported by IE - this will kill the bubbling process.
+	  e.cancelBubble = true;
+	  e.returnValue = msg; //This is displayed on the dialog
+	
+	  //e.stopPropagation works in Firefox.
+	  if (e.stopPropagation) {
+	    e.stopPropagation();
+	    e.preventDefault();
+	  }
+	  return msg;
+	}
 }
-// TODO Fazer isso aqui funcionar somente quando o cuco ta ativo :) 
 window.onbeforeunload=goodbye;
+
 //-->
 </script>
 
